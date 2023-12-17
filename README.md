@@ -33,6 +33,7 @@ O Frontend foi desenvolvido com Next14 e componentes do ShadcnUI
 ### 💻 FRONTEND
 
 ![DER](./dashboard-api/uploads/Dashboard_frontend.png)
+![DER](./dashboard-api/uploads/Dashboard_home.png)
 
 ### 🔧 Instalação
 
