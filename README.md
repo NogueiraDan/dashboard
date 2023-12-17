@@ -30,6 +30,10 @@ O Frontend foi desenvolvido com Next14 e componentes do ShadcnUI
 
 ![DER](./dashboard-api/uploads/Dashboard.png)
 
+### 💻 FRONTEND
+
+![DER](./dashboard-api/uploads/Dashboard_frontend.png)
+
 ### 🔧 Instalação
 
 Ao entrar em cada pasta API e WEB, rode o comando para instalar as dependencias e rodar o projeto:
