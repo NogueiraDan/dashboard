@@ -55,6 +55,18 @@ export async function getBrands() {
   }
 }
 
+export async function createUser(data: any) {
+  try {
+    await axios.post(`${BASE_URL}/users`, data);
+    const json = {
+      message: "Success",
+    };
+    return json;
+  } catch (error) {
+    throw new Error("Failed to create a user.");
+  }
+}
+
 export async function login(formData: any) {
   const body = formData;
   const response = await axios.post(`${BASE_URL}/login`, body);

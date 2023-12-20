@@ -7,7 +7,7 @@ export default class UserController {
 
   findAll = async (req: Request, res: Response) => {
     try {
-      const users = await this.userService.findAll();
+      const users = await this.userService.findAll(req.query);
       res.json(users);
     } catch (error) {
       res.status(400).json({ error: error });
@@ -25,6 +25,7 @@ export default class UserController {
 
   create = async (req: Request, res: Response) => {
     const { name, email, password, phone, profile } = req.body;
+
     if (!name || !email || !password || !phone || !profile) {
       return res
         .status(500)
@@ -36,7 +37,7 @@ export default class UserController {
       email: email,
       password: hashedPassword,
       phone: phone,
-      profile: profile,
+      profile: profile.toUpperCase(),
     };
     try {
       const user = await this.userService.create(userToSave);

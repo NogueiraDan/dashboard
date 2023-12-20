@@ -8,8 +8,8 @@ import bcrypt from "bcryptjs";
 export default class UserRepository implements IUserRepository {
   constructor(private userModel: Model<UserDocument>) {}
 
-  async findAll(): Promise<UserDocument[]> {
-    return this.userModel.find();
+  async findAll(query: any): Promise<UserDocument[]> {
+    return this.userModel.find(query);
   }
 
   async findOne(id: string): Promise<UserDocument | null> {
@@ -48,6 +48,7 @@ export default class UserRepository implements IUserRepository {
     const userData = {
       name: user.name,
       email: user.email,
+      profile: user.profile,
       userToken: token,
     };
     return userData;

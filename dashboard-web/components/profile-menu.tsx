@@ -61,19 +61,19 @@ export default function ProfileMenu() {
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem>
-            <Link href="/users" className="flex">
-              <Users className="mr-2 h-4 w-4" />
-              <span>Usuários</span>
+            <Link className="flex" href="/dashboard/new-user">
+            <Plus className="mr-2 h-4 w-4" />
+            <span>Novo usuário</span>
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
             <Plus className="mr-2 h-4 w-4" />
-            <span>New Team</span>
+            <span>Novo produto</span>
           </DropdownMenuItem>
           <DropdownMenuSub>
             <DropdownMenuSubTrigger>
               <UserPlus className="mr-2 h-4 w-4" />
-              <span>Invite users</span>
+              <span>Integrações</span>
             </DropdownMenuSubTrigger>
             <DropdownMenuPortal>
               <DropdownMenuSubContent>

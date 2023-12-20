@@ -4,8 +4,8 @@ import { UserDocument } from "../models/User";
 export class UserService {
   constructor(private userRepository: IUserRepository) {}
 
-  async findAll() {
-    const users = await this.userRepository.findAll();
+  async findAll(query: any) {
+    const users = await this.userRepository.findAll(query);
     return users;
   }
 

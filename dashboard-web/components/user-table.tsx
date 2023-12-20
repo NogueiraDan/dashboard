@@ -2,7 +2,6 @@
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -27,7 +26,9 @@ import {
 import {
   Select,
   SelectContent,
+  SelectGroup,
   SelectItem,
+  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
@@ -136,40 +137,69 @@ function AlertEdit() {
   );
 }
 
+function UserNav() {
+  return (
+    <div className="flex justify-between items-center mb-4">
+      <Input
+        placeholder="Nome,telefone,email..."
+        className="w-[50%] placeholder:opacity-75"
+        onChange={(event) => console.log(event.target.value)}
+      />
+      <div className="flex gap-1">
+        <Select>
+          <SelectTrigger className="w-[120px] bg-transparent border-slate-300">
+            <SelectValue placeholder="Selecione" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>Perfis</SelectLabel>
+              <SelectItem value="OWNER">Owner</SelectItem>
+              <SelectItem value="EMPLOYEE">Funcionário</SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+      </div>
+    </div>
+  );
+}
 export default function UsersTable({ users }: any) {
   return (
-    <Table>
-      <TableHeader>
-        <TableRow>
-          <TableHead>Nome</TableHead>
-          <TableHead>Email</TableHead>
-          <TableHead>Telefone</TableHead>
-          <TableHead className="text-right">Perfil</TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {users.map((user: any) => (
-          <TableRow key={user._id}>
-            <TableCell className="font-medium">{user.name}</TableCell>
-            <TableCell>{user.email}</TableCell>
-            <TableCell>{user.phone}</TableCell>
-            <TableCell className="text-right">{user.profile}</TableCell>
-            <TableCell>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <MoreVertical className="cursor-pointer" />
-                </PopoverTrigger>
-                <PopoverContent className="w-100">
-                  <div className="flex flex-col gap-2 outline-none">
-                    <AlertEdit />
-                    <AlertRemove />
-                  </div>
-                </PopoverContent>
-              </Popover>
-            </TableCell>
+    <>
+      <UserNav />
+
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead>Nome</TableHead>
+            <TableHead>Email</TableHead>
+            <TableHead>Telefone</TableHead>
+            <TableHead className="text-right">Perfil</TableHead>
           </TableRow>
-        ))}
-      </TableBody>
-    </Table>
+        </TableHeader>
+        <TableBody>
+          {users.map((user: any) => (
+            <TableRow key={user._id}>
+              <TableCell className="font-medium">{user.name}</TableCell>
+              <TableCell>{user.email}</TableCell>
+              <TableCell>{user.phone}</TableCell>
+              <TableCell className="text-right">{user.profile}</TableCell>
+              <TableCell>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <MoreVertical className="cursor-pointer" />
+                  </PopoverTrigger>
+                  <PopoverContent className="w-100">
+                    <div className="flex flex-col gap-2 outline-none">
+                      <AlertEdit />
+                      <AlertRemove />
+                    </div>
+                  </PopoverContent>
+                </Popover>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </>
   );
 }
