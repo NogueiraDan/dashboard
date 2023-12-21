@@ -34,4 +34,5 @@ router.delete("/products/:id", productController.delete);
 // Rotas protegidas pelos Middlewares
 router.post("/products", authenticate, productController.create);
 router.patch("/users/:id", authenticate, authorize, userController.update);
-router.delete("/users/:id", authorize, userController.delete);
+// router.delete("/users/:id", authorize, userController.delete);
+router.delete("/users/:id", userController.delete);

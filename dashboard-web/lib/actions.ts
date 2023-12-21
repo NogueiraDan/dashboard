@@ -104,7 +104,21 @@ export async function deleteProduct(id: string) {
     return json;
   } catch (error) {
     console.log(error);
-    throw new Error("Failed to create a product.");
+    throw new Error("Failed to delete a product.");
+  }
+}
+
+
+export async function deleteUser(id: string) {
+  try {
+    await axios.delete(`${BASE_URL}/users/${id}`);
+    const json = {
+      message: "Produto deletado com sucesso!",
+    };
+    return json;
+  } catch (error) {
+    console.log(error);
+    throw new Error("Failed to deleta a user.");
   }
 }
 

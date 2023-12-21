@@ -27,7 +27,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { Input } from "./ui/input";
 import { MoreVertical } from "lucide-react";
-import { getUsers, getUsersByProfile } from "@/lib/actions";
+import { deleteUser, getUsers, getUsersByProfile } from "@/lib/actions";
 import AlertRemove from "./alert-remove";
 import AlertEdit from "./alert-edit";
 
@@ -62,6 +62,15 @@ export default function UsersTable() {
     getUsersByProfile(profile).then((response) => {
       setUsers(response);
     });
+  }
+
+  async function handleRemove(id: string) {
+    const response = await deleteUser(id);
+    if (response) {
+      alert("Usuário deletado com sucesso!");
+      location.reload();
+    }
+    return;
   }
 
   useEffect(() => {
@@ -120,7 +129,7 @@ export default function UsersTable() {
                   <PopoverContent className="w-100">
                     <div className="flex flex-col gap-2 outline-none">
                       <AlertEdit fields={fields} select={select} />
-                      <AlertRemove />
+                      <AlertRemove onRemove={handleRemove} id={user._id} />
                     </div>
                   </PopoverContent>
                 </Popover>
