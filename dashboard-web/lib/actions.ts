@@ -95,6 +95,19 @@ export async function getUsersByProfile(query: any) {
   }
 }
 
+export async function deleteProduct(id: string) {
+  try {
+    await axios.delete(`${BASE_URL}/products/${id}`);
+    const json = {
+      message: "Produto deletado com sucesso!",
+    };
+    return json;
+  } catch (error) {
+    console.log(error);
+    throw new Error("Failed to create a product.");
+  }
+}
+
 export async function login(formData: any) {
   const body = formData;
   const response = await axios.post(`${BASE_URL}/login`, body);

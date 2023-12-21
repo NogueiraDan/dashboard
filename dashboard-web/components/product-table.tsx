@@ -1,7 +1,7 @@
 "use client";
 import * as React from "react";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import { MoreVertical, Pencil } from "lucide-react";
+import { MoreVertical } from "lucide-react";
 import {
   Table,
   TableBody,
@@ -20,8 +20,24 @@ import ProductNav from "./product-nav";
 import { formatCurrency } from "@/lib/helpers";
 import AlertRemove from "./alert-remove";
 import AlertEdit from "./alert-edit";
+import { deleteProduct } from "@/lib/actions";
 
-export default function ProductsList({ products }: any) {
+interface Product {
+  brand: string;
+  category: string;
+  description: string;
+  name: string;
+  price: number;
+  stock: number;
+  __v: number;
+  _id: string;
+}
+
+interface Props {
+  products: Product[];
+}
+
+export default function ProductsList({ products }: Props) {
   const fields = [
     {
       name: "Nome",
@@ -40,6 +56,15 @@ export default function ProductsList({ products }: any) {
       type: "text",
     },
   ];
+
+  async function handleRemove(id: string) {
+    const response = await deleteProduct(id);
+    if (response) {
+      alert("Produto deletado com sucesso!");
+      location.reload();
+    }
+    return;
+  }
 
   return (
     <>
@@ -71,7 +96,7 @@ export default function ProductsList({ products }: any) {
                     <PopoverContent className="w-100">
                       <div className="flex flex-col gap-2 outline-none">
                         <AlertEdit fields={fields} />
-                        <AlertRemove />
+                        <AlertRemove onRemove={handleRemove} id={product._id} />
                       </div>
                     </PopoverContent>
                   </Popover>

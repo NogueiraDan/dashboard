@@ -12,9 +12,9 @@ import {
 import { Button } from "./ui/button";
 import { Trash } from "lucide-react";
 
-export default function AlertRemove() {
+export default function AlertRemove({ onRemove, id }: any) {
   function handleRemove() {
-    console.log("Usuário removido");
+    onRemove(id);
   }
 
   return (

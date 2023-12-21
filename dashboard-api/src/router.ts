@@ -25,7 +25,10 @@ router.post("/categories", categoryController.create);
 router.get("/brands", brandController.findAll);
 router.post("/brands", brandController.create);
 router.patch("/brands/:id", brandController.update);
+
+// Rotas de Produtos
 router.get("/products", productController.findAll);
+router.delete("/products/:id", productController.delete);
 
 // Rotas de Produtos
 // Rotas protegidas pelos Middlewares

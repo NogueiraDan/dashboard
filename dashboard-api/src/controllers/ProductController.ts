@@ -59,7 +59,7 @@ export default class ProductController {
   delete = async (req: Request, res: Response) => {
     try {
       await this.productService.delete(req.params.id);
-      res.status(200).json({ message: "Usuário deletado com sucesso!" });
+      res.status(200).json({ message: "Produto deletado com sucesso!" });
     } catch (error) {
       console.log(error);
       res.status(400).json({ error: error });
