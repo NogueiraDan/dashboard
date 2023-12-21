@@ -46,6 +46,7 @@ async function onSubmit(data: ProfileFormValues) {
   if (response) {
     console.log(response);
     alert("Usuário cadastrado com sucesso!");
+    location.reload();
   }
 }
 

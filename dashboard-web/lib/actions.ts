@@ -67,6 +67,23 @@ export async function createUser(data: any) {
   }
 }
 
+export async function createProduct(data: any) {
+  const token = cookies().get("USER_AUTH_TOKEN_SECRET");
+  const headers = {
+    "x-access-token": token?.value,
+  };
+  try {
+    await axios.post(`${BASE_URL}/products`, data, { headers });
+    const json = {
+      message: "Success",
+    };
+    return json;
+  } catch (error) {
+    console.log(error);
+    throw new Error("Failed to create a product.");
+  }
+}
+
 export async function getUsersByProfile(query: any) {
   const data = query.toUpperCase();
   const url = data ? `${BASE_URL}/users?profile=${data}` : `${BASE_URL}/users`;

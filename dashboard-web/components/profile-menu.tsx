@@ -62,13 +62,15 @@ export default function ProfileMenu() {
         <DropdownMenuGroup>
           <DropdownMenuItem>
             <Link className="flex" href="/dashboard/new-user">
-            <Plus className="mr-2 h-4 w-4" />
-            <span>Novo usuário</span>
+              <Plus className="mr-2 h-4 w-4" />
+              <span>Novo usuário</span>
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Plus className="mr-2 h-4 w-4" />
-            <span>Novo produto</span>
+            <Link className="flex" href="/dashboard/new-product">
+              <Plus className="mr-2 h-4 w-4" />
+              <span>Novo produto</span>
+            </Link>
           </DropdownMenuItem>
           <DropdownMenuSub>
             <DropdownMenuSubTrigger>
