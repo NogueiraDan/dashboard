@@ -67,6 +67,17 @@ export async function createUser(data: any) {
   }
 }
 
+export async function getUsersByProfile(query: any) {
+  const data = query.toUpperCase();
+  const url = data ? `${BASE_URL}/users?profile=${data}` : `${BASE_URL}/users`;
+  try {
+    const response = await axios.get(url);
+    return response.data;
+  } catch (error) {
+    throw new Error("Failed to get users.");
+  }
+}
+
 export async function login(formData: any) {
   const body = formData;
   const response = await axios.post(`${BASE_URL}/login`, body);

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import UsersTable from "@/components/user-table";
-import { getUsers, checkAuth } from "@/lib/actions";
+import { checkAuth } from "@/lib/actions";
 
 export const metadata: Metadata = {
   title: "Usuários",
@@ -9,12 +9,11 @@ export const metadata: Metadata = {
 
 export default async function Page() {
   await checkAuth();
-  const users = await getUsers();
   return (
     <main className="p-5 flex flex-col gap-3 h-full">
       <h1 className="text-3xl font-bold my-3">Usuários</h1>
       <div>
-        <UsersTable users={users} />
+        <UsersTable />
       </div>
     </main>
   );

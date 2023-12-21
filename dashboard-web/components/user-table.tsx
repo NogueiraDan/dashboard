@@ -7,11 +7,13 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+
 import {
   AlertDialog,
   AlertDialogAction,
@@ -23,6 +25,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+
 import {
   Select,
   SelectContent,
@@ -33,15 +36,18 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
+import React, { useEffect, useState } from "react";
 import { Button } from "./ui/button";
-import { MoreVertical, Pencil, Trash } from "lucide-react";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
+import { MoreVertical, Pencil, Trash } from "lucide-react";
+import { getUsers, getUsersByProfile } from "@/lib/actions";
 
-function handleRemove() {
-  console.log("Usuário removido");
-}
 function AlertRemove() {
+  function handleRemove() {
+    console.log("Usuário removido");
+  }
+
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
@@ -137,36 +143,48 @@ function AlertEdit() {
   );
 }
 
-function UserNav() {
-  return (
-    <div className="flex justify-between items-center mb-4">
-      <Input
-        placeholder="Nome,telefone,email..."
-        className="w-[50%] placeholder:opacity-75"
-        onChange={(event) => console.log(event.target.value)}
-      />
-      <div className="flex gap-1">
-        <Select>
-          <SelectTrigger className="w-[120px] bg-transparent border-slate-300">
-            <SelectValue placeholder="Selecione" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectLabel>Perfis</SelectLabel>
-              <SelectItem value="OWNER">Owner</SelectItem>
-              <SelectItem value="EMPLOYEE">Funcionário</SelectItem>
-            </SelectGroup>
-          </SelectContent>
-        </Select>
-      </div>
-    </div>
-  );
-}
-export default function UsersTable({ users }: any) {
+export default function UsersTable() {
+  const [users, setUsers] = useState([]);
+
+  function handleFilter(event: any) {
+    const profile = event === "all" ? "" : event;
+    getUsersByProfile(profile).then((response) => {
+      setUsers(response);
+    });
+  }
+
+  useEffect(() => {
+    async function fetchUsers() {
+      const response = await getUsers();
+      setUsers(response);
+    }
+    fetchUsers();
+  }, []);
+
   return (
     <>
-      <UserNav />
-
+      <div className="flex justify-between items-center mb-4">
+        <Input
+          placeholder="Nome,telefone,email..."
+          className="w-[50%] placeholder:opacity-75"
+          onChange={(event) => console.log(event.target.value)}
+        />
+        <div className="flex gap-1">
+          <Select onValueChange={(event) => handleFilter(event)}>
+            <SelectTrigger className="w-[120px] bg-transparent border-slate-300">
+              <SelectValue placeholder="Selecione" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel>Perfis</SelectLabel>
+                <SelectItem value="owner">Owner</SelectItem>
+                <SelectItem value="employee">Funcionário</SelectItem>
+                <SelectItem value="all">Todos</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+        </div>
+      </div>
       <Table>
         <TableHeader>
           <TableRow>
