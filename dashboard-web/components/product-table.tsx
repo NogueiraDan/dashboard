@@ -25,15 +25,19 @@ export default function ProductsList({ products }: any) {
   const fields = [
     {
       name: "Nome",
+      type: "text",
     },
     {
-      price: "Preço",
+      name: "Preço",
+      type: "text",
     },
     {
-      stock: "Estoque",
+      name: "Estoque",
+      type: "text",
     },
     {
-      description: "Descrição",
+      name: "Descrição",
+      type: "text",
     },
   ];
 

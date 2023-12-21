@@ -51,10 +51,10 @@ export default function AlertEdit({ fields, select }: Props) {
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle className="text-2xl">
-            Editando o usuário
+            Edite as informações
           </AlertDialogTitle>
           <AlertDialogDescription>
-            Preencha com as novas informações
+            Preencha com as novas informações que deseja salvar
           </AlertDialogDescription>
         </AlertDialogHeader>
         <form>
