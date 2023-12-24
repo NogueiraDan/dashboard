@@ -16,8 +16,9 @@ export default async function Page() {
   return (
     <main className="h-full">
       <h1 className="text-3xl font-bold mb-5">Dashboard</h1>
-      <Overview />
-      <Suspense fallback={<OverviewSkeleton />}></Suspense>
+      <Suspense fallback={<OverviewSkeleton />}>
+        <Overview />
+      </Suspense>
 
       <div className="flex flex-col md:flex-row w-full pt-8 gap-5 justify-between ">
         <div className="w-full">
