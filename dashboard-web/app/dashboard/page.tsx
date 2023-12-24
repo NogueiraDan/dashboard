@@ -4,7 +4,7 @@ import Overview from "@/components/overview";
 import { RevenueChart } from "@/components/revenue-chart";
 import RecentActivity from "@/components/recent-activity";
 import { checkAuth } from "@/lib/actions";
-import { OverviewSkeleton } from "@/components/skeletons";
+import { OverviewSkeleton, RevenueChartSkeleton } from "@/components/skeletons";
 
 export const metadata: Metadata = {
   title: "Dashboard",
@@ -22,7 +22,9 @@ export default async function Page() {
 
       <div className="flex flex-col md:flex-row w-full pt-8 gap-5 justify-between ">
         <div className="w-full">
-          <RevenueChart />
+          <Suspense fallback={<RevenueChartSkeleton />}>
+            <RevenueChart />
+          </Suspense>
         </div>
         <div className="w-full">
           <RecentActivity />
