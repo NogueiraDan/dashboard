@@ -28,6 +28,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "components/icon.stsx"
-  ],
+, "__tests__/page-login.test.tsx"  ],
   "exclude": ["node_modules"]
 }
