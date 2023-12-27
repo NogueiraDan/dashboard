@@ -37,11 +37,19 @@ O Frontend foi desenvolvido com Next14 e componentes do ShadcnUI
 
 ### 🔧 Instalação
 
-Ao entrar em cada pasta API e WEB, rode o comando para instalar as dependencias e rodar o projeto:
+Na raiz do projeto e também em cada pasta API e WEB, instale as dependências do projeto:
 
 ```
 npm install
 ```
+
+Em seguida se quiser rodar a aplicação completa, pode usar o comando abaixo na raiz do projeto
+
+```
+npm run start
+```
+
+Ou então também é possivel rodar só a API ou só o Front Web com o comando (dentro pasta):
 
 ```
 npm run dev

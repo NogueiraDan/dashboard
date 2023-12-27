@@ -1,0 +1,20 @@
+{
+  "name": "dashboard",
+  "version": "1.0.0",
+  "description": "Desenvolvida com Nodejs e Typescript e a persistência dos dados no MongoDB. Consta também com o padrão de projeto Repository Pattern e Services em sua arquitetura.\r O Frontend foi desenvolvido com Next14 e componentes do ShadcnUI",
+  "main": "index.js",
+  "scripts": {
+    "start:web": "cd dashboard-web && npm run dev",
+    "start:api": "cd dashboard-api && npm run dev",
+    "test:api": "cd dashboard-api && npm run test",
+    "test:web": "cd dashboard-web && npm run test",
+    "test": "concurrently \"npm run test:web\" \"npm run test:api\"",
+    "start": "concurrently \"npm run start:web\" \"npm run start:api\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
