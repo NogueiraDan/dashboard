@@ -7,7 +7,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import {
   Popover,
   PopoverContent,
@@ -105,39 +105,42 @@ export default function UsersTable() {
           </Select>
         </div>
       </div>
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead>Nome</TableHead>
-            <TableHead>Email</TableHead>
-            <TableHead>Telefone</TableHead>
-            <TableHead className="text-right">Perfil</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {users.map((user: any) => (
-            <TableRow key={user._id}>
-              <TableCell className="font-medium">{user.name}</TableCell>
-              <TableCell>{user.email}</TableCell>
-              <TableCell>{user.phone}</TableCell>
-              <TableCell className="text-right">{user.profile}</TableCell>
-              <TableCell>
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <MoreVertical className="cursor-pointer" />
-                  </PopoverTrigger>
-                  <PopoverContent className="w-100">
-                    <div className="flex flex-col gap-2 outline-none">
-                      <AlertEdit fields={fields} select={select} />
-                      <AlertRemove onRemove={handleRemove} id={user._id} />
-                    </div>
-                  </PopoverContent>
-                </Popover>
-              </TableCell>
+      <ScrollArea className="h-72 w-full rounded-md border">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Nome</TableHead>
+              <TableHead>Email</TableHead>
+              <TableHead>Telefone</TableHead>
+              <TableHead className="text-right">Perfil</TableHead>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+          </TableHeader>
+          <TableBody>
+            {users.map((user: any) => (
+              <TableRow key={user._id}>
+                <TableCell className="font-medium">{user.name}</TableCell>
+                <TableCell>{user.email}</TableCell>
+                <TableCell>{user.phone}</TableCell>
+                <TableCell className="text-right">{user.profile}</TableCell>
+                <TableCell>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <MoreVertical className="cursor-pointer" />
+                    </PopoverTrigger>
+                    <PopoverContent className="w-100">
+                      <div className="flex flex-col gap-2 outline-none">
+                        <AlertEdit fields={fields} select={select} />
+                        <AlertRemove onRemove={handleRemove} id={user._id} />
+                      </div>
+                    </PopoverContent>
+                  </Popover>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+        <ScrollBar orientation="horizontal" />
+      </ScrollArea>
     </>
   );
 }
