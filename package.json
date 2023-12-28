@@ -4,6 +4,8 @@
   "description": "Desenvolvida com Nodejs e Typescript e a persistência dos dados no MongoDB. Consta também com o padrão de projeto Repository Pattern e Services em sua arquitetura.\r O Frontend foi desenvolvido com Next14 e componentes do ShadcnUI",
   "main": "index.js",
   "scripts": {
+    "ci:web":"cd dashboard-web && npm ci",
+    "ci:api":"cd dashboard-api && npm ci",
     "start:web": "cd dashboard-web && npm run dev",
     "start:api": "cd dashboard-api && npm run dev",
     "start": "concurrently \"npm run start:web\" \"npm run start:api\"",
