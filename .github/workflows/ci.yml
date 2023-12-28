@@ -25,4 +25,9 @@ jobs:
         run: 'npm run lint:web'
       - name: Tests Web
         run: 'npm run test:web'
+      - name: Install api dependencies
+        run: 'npm run ci:api'
+      - name: Linting Api
+        run: 'npm run lint:api'
+        
     

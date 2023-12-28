@@ -12,7 +12,8 @@
     "test:api": "cd dashboard-api && npm run test",
     "test:web": "cd dashboard-web && npm run test",
     "test": "concurrently \"npm run test:web\" \"npm run test:api\"",
-    "lint:web": "cd dashboard-web && npm run lint"
+    "lint:web": "cd dashboard-web && npm run lint",    
+    "lint:api": "cd dashboard-api && npm run lint"
   },
   "keywords": [],
   "author": "",
