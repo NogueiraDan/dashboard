@@ -9,4 +9,5 @@ export default interface ICategoryRepository {
     data: Partial<CategoryDocument>
   ): Promise<CategoryDocument | null>;
   delete(id: string): Promise<void | null>;
-}
+// eslint-disable-next-line semi
+};

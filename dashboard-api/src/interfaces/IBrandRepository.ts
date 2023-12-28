@@ -9,4 +9,5 @@ export default interface IBrandRepository {
     data: Partial<BrandDocument>
   ): Promise<BrandDocument | null>;
   delete(id: string): Promise<void | null>;
-}
+// eslint-disable-next-line semi
+};

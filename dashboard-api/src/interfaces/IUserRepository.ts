@@ -7,4 +7,5 @@ export default interface IUserRepository {
   update(id: string, data: Partial<UserDocument>): Promise<UserDocument | null>;
   delete(id: string): Promise<void | null>;
   login(email: string, password: string): Promise<any>;
+// eslint-disable-next-line semi
 }

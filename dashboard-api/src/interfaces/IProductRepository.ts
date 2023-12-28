@@ -9,4 +9,5 @@ export default interface IProductRepository {
     data: Partial<ProductDocument>
   ): Promise<ProductDocument | null>;
   delete(id: string): Promise<void | null>;
+// eslint-disable-next-line semi
 }
