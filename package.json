@@ -6,10 +6,11 @@
   "scripts": {
     "start:web": "cd dashboard-web && npm run dev",
     "start:api": "cd dashboard-api && npm run dev",
+    "start": "concurrently \"npm run start:web\" \"npm run start:api\"",
     "test:api": "cd dashboard-api && npm run test",
     "test:web": "cd dashboard-web && npm run test",
     "test": "concurrently \"npm run test:web\" \"npm run test:api\"",
-    "start": "concurrently \"npm run start:web\" \"npm run start:api\""
+    "lint:web": "cd dashboard-web && npm run lint"
   },
   "keywords": [],
   "author": "",
