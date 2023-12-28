@@ -31,8 +31,6 @@ export function AuthForm({ className, ...props }: AuthFormProps) {
   async function onSubmit(event: React.SyntheticEvent) {
     event.preventDefault();
     setIsLoading(true);
-    console.log("Email:", credentials.email);
-    console.log("Password:", credentials.password);
     setCredentials({
       email: "",
       password: "",

@@ -108,7 +108,6 @@ export async function deleteProduct(id: string) {
   }
 }
 
-
 export async function deleteUser(id: string) {
   try {
     await axios.delete(`${BASE_URL}/users/${id}`);
@@ -134,11 +133,18 @@ export async function login(formData: any) {
     name: "USER_AUTH_TOKEN_SECRET",
     value: response.data.data.userToken,
   });
+
+  cookies().set({
+    name: "USER_INFO",
+    value: JSON.stringify(response.data.data),
+  });
+
   redirect("/dashboard");
 }
 
 export async function logout() {
   cookies().delete("USER_AUTH_TOKEN_SECRET");
+  cookies().delete("USER_INFO");
   redirect("/");
 }
 
@@ -146,6 +152,11 @@ export async function getToken() {
   const token = cookies().get("USER_AUTH_TOKEN_SECRET");
   if (token) return true;
   else return false;
+}
+
+export async function getUserInfo() {
+  const userInfo: any = cookies().get("USER_INFO");
+  return JSON.parse(userInfo.value);
 }
 
 export async function checkAuth() {

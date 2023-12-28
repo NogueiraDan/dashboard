@@ -49,8 +49,10 @@ export default class UserRepository implements IUserRepository {
       name: user.name,
       email: user.email,
       profile: user.profile,
+      phone: user.phone,
       userToken: token,
     };
+    
     return userData;
   }
 }
