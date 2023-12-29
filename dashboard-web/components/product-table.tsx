@@ -35,9 +35,10 @@ interface Product {
 
 interface Props {
   products: Product[];
+  isOwner: boolean | undefined;
 }
 
-export default function ProductsList({ products }: Props) {
+export default function ProductsList({ products, isOwner }: Props) {
   const fields = [
     {
       name: "Nome",
@@ -88,19 +89,25 @@ export default function ProductsList({ products }: Props) {
                 <TableCell className="text-right">
                   {product.description}
                 </TableCell>
-                <TableCell>
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <MoreVertical className="cursor-pointer" />
-                    </PopoverTrigger>
-                    <PopoverContent className="w-100">
-                      <div className="flex flex-col gap-2 outline-none">
-                        <AlertEdit fields={fields} />
-                        <AlertRemove onRemove={handleRemove} id={product._id} />
-                      </div>
-                    </PopoverContent>
-                  </Popover>
-                </TableCell>
+
+                {isOwner && (
+                  <TableCell>
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <MoreVertical className="cursor-pointer" />
+                      </PopoverTrigger>
+                      <PopoverContent className="w-100">
+                        <div className="flex flex-col gap-2 outline-none">
+                          <AlertEdit fields={fields} />
+                          <AlertRemove
+                            onRemove={handleRemove}
+                            id={product._id}
+                          />
+                        </div>
+                      </PopoverContent>
+                    </Popover>
+                  </TableCell>
+                )}
               </TableRow>
             ))}
           </TableBody>

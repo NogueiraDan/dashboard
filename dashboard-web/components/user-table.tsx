@@ -13,7 +13,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-
 import {
   Select,
   SelectContent,
@@ -23,7 +22,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-
 import React, { useEffect, useState } from "react";
 import { Input } from "./ui/input";
 import { MoreVertical } from "lucide-react";
@@ -31,7 +29,11 @@ import { deleteUser, getUsers, getUsersByProfile } from "@/lib/actions";
 import AlertRemove from "./alert-remove";
 import AlertEdit from "./alert-edit";
 
-export default function UsersTable() {
+interface Props {
+  isOwner: boolean | undefined;
+}
+
+export default function UsersTable({ isOwner }: Props) {
   const [users, setUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [search, setSearch] = useState("");
@@ -49,7 +51,6 @@ export default function UsersTable() {
       type: "text",
     },
   ];
-
   const select = [
     {
       value: "OWNER",
@@ -134,22 +135,24 @@ export default function UsersTable() {
                     <TableCell>{user.email}</TableCell>
                     <TableCell>{user.phone}</TableCell>
                     <TableCell className="text-right">{user.profile}</TableCell>
-                    <TableCell>
-                      <Popover>
-                        <PopoverTrigger asChild>
-                          <MoreVertical className="cursor-pointer" />
-                        </PopoverTrigger>
-                        <PopoverContent className="w-100">
-                          <div className="flex flex-col gap-2 outline-none">
-                            <AlertEdit fields={fields} select={select} />
-                            <AlertRemove
-                              onRemove={handleRemove}
-                              id={user._id}
-                            />
-                          </div>
-                        </PopoverContent>
-                      </Popover>
-                    </TableCell>
+                    {isOwner && (
+                      <TableCell>
+                        <Popover>
+                          <PopoverTrigger asChild>
+                            <MoreVertical className="cursor-pointer" />
+                          </PopoverTrigger>
+                          <PopoverContent className="w-100">
+                            <div className="flex flex-col gap-2 outline-none">
+                              <AlertEdit fields={fields} select={select} />
+                              <AlertRemove
+                                onRemove={handleRemove}
+                                id={user._id}
+                              />
+                            </div>
+                          </PopoverContent>
+                        </Popover>
+                      </TableCell>
+                    )}
                   </TableRow>
                 ))}
               </>
@@ -163,22 +166,24 @@ export default function UsersTable() {
                     <TableCell>{user.email}</TableCell>
                     <TableCell>{user.phone}</TableCell>
                     <TableCell className="text-right">{user.profile}</TableCell>
-                    <TableCell>
-                      <Popover>
-                        <PopoverTrigger asChild>
-                          <MoreVertical className="cursor-pointer" />
-                        </PopoverTrigger>
-                        <PopoverContent className="w-100">
-                          <div className="flex flex-col gap-2 outline-none">
-                            <AlertEdit fields={fields} select={select} />
-                            <AlertRemove
-                              onRemove={handleRemove}
-                              id={user._id}
-                            />
-                          </div>
-                        </PopoverContent>
-                      </Popover>
-                    </TableCell>
+                    {isOwner && (
+                      <TableCell>
+                        <Popover>
+                          <PopoverTrigger asChild>
+                            <MoreVertical className="cursor-pointer" />
+                          </PopoverTrigger>
+                          <PopoverContent className="w-100">
+                            <div className="flex flex-col gap-2 outline-none">
+                              <AlertEdit fields={fields} select={select} />
+                              <AlertRemove
+                                onRemove={handleRemove}
+                                id={user._id}
+                              />
+                            </div>
+                          </PopoverContent>
+                        </Popover>
+                      </TableCell>
+                    )}
                   </TableRow>
                 ))}
               </>

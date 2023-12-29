@@ -1,4 +1,4 @@
-import { checkAuth, getUserInfo } from "@/lib/actions";
+import { checkAuth, getUserInfo, isOwner } from "@/lib/actions";
 import { Metadata } from "next";
 import * as React from "react";
 
@@ -31,6 +31,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
+  const owner = await isOwner();
   await checkAuth();
   const user = await getUserInfo();
   console.log(user);
@@ -98,20 +99,22 @@ export default async function Page() {
                         <Input id="name" placeholder="Ex: (99) 99999-9999" />
                       </div>
 
-                      <div className="flex flex-col w-[50%] space-y-2">
-                        <Label htmlFor="name">Perfil</Label>
-                        <Select>
-                          <SelectTrigger className="w-[180px]">
-                            <SelectValue placeholder="Selecione o perfil" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="owner">Owner</SelectItem>
-                            <SelectItem value="employee">
-                              Funcionário
-                            </SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
+                      {owner && (
+                        <div className="flex flex-col w-[50%] space-y-2">
+                          <Label htmlFor="name">Perfil</Label>
+                          <Select>
+                            <SelectTrigger className="w-[180px]">
+                              <SelectValue placeholder="Selecione o perfil" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="owner">Owner</SelectItem>
+                              <SelectItem value="employee">
+                                Funcionário
+                              </SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </form>

@@ -148,18 +148,25 @@ export async function logout() {
   redirect("/");
 }
 
+export async function getUserInfo() {
+  const userInfo: any = cookies().get("USER_INFO");
+  return JSON.parse(userInfo.value);
+}
+
 export async function getToken() {
   const token = cookies().get("USER_AUTH_TOKEN_SECRET");
   if (token) return true;
   else return false;
 }
 
-export async function getUserInfo() {
-  const userInfo: any = cookies().get("USER_INFO");
-  return JSON.parse(userInfo.value);
-}
-
 export async function checkAuth() {
   const userToken = await getToken();
   userToken ? null : redirect("/");
+}
+
+export async function isOwner() {
+  const user: any = cookies().get("USER_INFO");
+  const userJSON = JSON.parse(user?.value);
+  if (userJSON.profile === "OWNER") return true;
+  else false;
 }
