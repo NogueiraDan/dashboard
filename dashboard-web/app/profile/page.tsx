@@ -43,7 +43,7 @@ export default async function Page() {
             <Link href="/dashboard">Voltar</Link>
           </Button>
         </div>
-        <div className="flex">
+        <div className="flex flex-col gap-4 items-center md:flex-row">
           <div className="w-[40%] flex flex-col items-start">
             <Card className="w-[90%] flex items-center flex-col">
               <CardHeader className="flex items-center flex-col">
@@ -61,7 +61,7 @@ export default async function Page() {
                 <span className="opacity-70">{user.phone}</span>
               </CardContent>
               <CardFooter className="flex">
-                <Button className="w-[300px]" variant={"outline"}>
+                <Button className="w-[120px]" variant={"outline"}>
                   Trocar foto
                 </Button>
               </CardFooter>
