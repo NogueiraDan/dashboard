@@ -68,7 +68,9 @@ export default function UsersTable() {
 
   function handleSearch(search: any) {
     setSearch(search);
-    setFilteredUsers(users.filter((user: any) => user.name.includes(search)));
+    setFilteredUsers(
+      users.filter((user: any) => user.name.toLowerCase().includes(search))
+    );
     console.log("Usuários filtrados", filteredUsers);
   }
 
