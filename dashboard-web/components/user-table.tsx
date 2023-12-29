@@ -33,6 +33,8 @@ import AlertEdit from "./alert-edit";
 
 export default function UsersTable() {
   const [users, setUsers] = useState([]);
+  const [filteredUsers, setFilteredUsers] = useState([]);
+  const [search, setSearch] = useState("");
   const fields = [
     {
       name: "Nome",
@@ -64,6 +66,12 @@ export default function UsersTable() {
     });
   }
 
+  function handleSearch(search: any) {
+    setSearch(search);
+    setFilteredUsers(users.filter((user: any) => user.name.includes(search)));
+    console.log("Usuários filtrados", filteredUsers);
+  }
+
   async function handleRemove(id: string) {
     const response = await deleteUser(id);
     if (response) {
@@ -87,7 +95,7 @@ export default function UsersTable() {
         <Input
           placeholder="Nome,telefone,email..."
           className="w-[50%] placeholder:opacity-75"
-          onChange={(event) => console.log(event.target.value)}
+          onChange={(event) => handleSearch(event.target.value)}
         />
         <div className="flex gap-1">
           <Select onValueChange={(event) => handleFilter(event)}>
@@ -116,27 +124,63 @@ export default function UsersTable() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {users.map((user: any) => (
-              <TableRow key={user._id}>
-                <TableCell className="font-medium">{user.name}</TableCell>
-                <TableCell>{user.email}</TableCell>
-                <TableCell>{user.phone}</TableCell>
-                <TableCell className="text-right">{user.profile}</TableCell>
-                <TableCell>
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <MoreVertical className="cursor-pointer" />
-                    </PopoverTrigger>
-                    <PopoverContent className="w-100">
-                      <div className="flex flex-col gap-2 outline-none">
-                        <AlertEdit fields={fields} select={select} />
-                        <AlertRemove onRemove={handleRemove} id={user._id} />
-                      </div>
-                    </PopoverContent>
-                  </Popover>
-                </TableCell>
-              </TableRow>
-            ))}
+            {!search && (
+              <>
+                {users.map((user: any) => (
+                  <TableRow key={user._id}>
+                    <TableCell className="font-medium">{user.name}</TableCell>
+                    <TableCell>{user.email}</TableCell>
+                    <TableCell>{user.phone}</TableCell>
+                    <TableCell className="text-right">{user.profile}</TableCell>
+                    <TableCell>
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <MoreVertical className="cursor-pointer" />
+                        </PopoverTrigger>
+                        <PopoverContent className="w-100">
+                          <div className="flex flex-col gap-2 outline-none">
+                            <AlertEdit fields={fields} select={select} />
+                            <AlertRemove
+                              onRemove={handleRemove}
+                              id={user._id}
+                            />
+                          </div>
+                        </PopoverContent>
+                      </Popover>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </>
+            )}
+
+            {search && (
+              <>
+                {filteredUsers.map((user: any) => (
+                  <TableRow key={user._id}>
+                    <TableCell className="font-medium">{user.name}</TableCell>
+                    <TableCell>{user.email}</TableCell>
+                    <TableCell>{user.phone}</TableCell>
+                    <TableCell className="text-right">{user.profile}</TableCell>
+                    <TableCell>
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <MoreVertical className="cursor-pointer" />
+                        </PopoverTrigger>
+                        <PopoverContent className="w-100">
+                          <div className="flex flex-col gap-2 outline-none">
+                            <AlertEdit fields={fields} select={select} />
+                            <AlertRemove
+                              onRemove={handleRemove}
+                              id={user._id}
+                            />
+                          </div>
+                        </PopoverContent>
+                      </Popover>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </>
+            )}
           </TableBody>
         </Table>
         <ScrollBar orientation="horizontal" />
