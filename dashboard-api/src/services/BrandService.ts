@@ -1,10 +1,10 @@
 import { BrandDocument } from "../models/Brand";
-import IBrandRepository from "../interfaces/IBrandRepository";
+import { EntityRepository } from "../interfaces/EntityRepository";
 
 export class BrandService {
-  constructor(private brandRepository: IBrandRepository) {}
+  constructor(private brandRepository: EntityRepository) {}
 
-  async findAll(query:any) {
+  async findAll(query: any) {
     const users = await this.brandRepository.findAll(query);
     return users;
   }

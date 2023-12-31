@@ -1,7 +1,6 @@
-import { env } from "node:process";
 import { Model } from "mongoose";
 import { UserDocument } from "../models/User";
-import IUserRepository from "../interfaces/IUserRepository";
+import { IUserRepository } from "../interfaces/EntityRepository";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 
@@ -12,7 +11,7 @@ export default class UserRepository implements IUserRepository {
     return this.userModel.find(query);
   }
 
-  async findOne(id: string): Promise<UserDocument | null> {
+  async findById(id: string): Promise<UserDocument | null> {
     return this.userModel.findById(id);
   }
 
@@ -52,7 +51,7 @@ export default class UserRepository implements IUserRepository {
       phone: user.phone,
       userToken: token,
     };
-    
+
     return userData;
   }
 }

@@ -1,8 +1,8 @@
-import IProductRepository from "../interfaces/IProductRepository";
+import { EntityRepository } from "../interfaces/EntityRepository";
 import { ProductDocument } from "../models/Product";
 
 export class ProductService {
-  constructor(private productRepository: IProductRepository) {}
+  constructor(private productRepository: EntityRepository) {}
 
   async findAll(query: any) {
     const products = await this.productRepository.findAll(query);

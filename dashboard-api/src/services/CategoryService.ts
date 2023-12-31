@@ -1,8 +1,8 @@
 import { CategoryDocument } from "../models/Category";
-import ICategoryRepository from "../interfaces/ICategoryRepository";
+import { EntityRepository } from "../interfaces/EntityRepository";
 
 export class CategoryService {
-  constructor(private categoryRepository: ICategoryRepository) {}
+  constructor(private categoryRepository: EntityRepository) {}
 
   async findAll(query: any) {
     const categories = await this.categoryRepository.findAll(query);

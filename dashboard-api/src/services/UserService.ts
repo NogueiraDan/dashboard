@@ -1,4 +1,4 @@
-import IUserRepository from "../interfaces/IUserRepository";
+import { IUserRepository } from "../interfaces/EntityRepository";
 import { UserDocument } from "../models/User";
 
 export class UserService {
@@ -10,7 +10,7 @@ export class UserService {
   }
 
   async findOne(id: string) {
-    const user = await this.userRepository.findOne(id);
+    const user = await this.userRepository.findById(id);
     return user;
   }
 
