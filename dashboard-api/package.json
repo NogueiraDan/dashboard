@@ -4,11 +4,11 @@
   "description": "API para cadastro de produtos, marcas, categorias e usuários com perfis de acesso",
   "main": "index.js",
   "scripts": {
-    "test": "jest --forceExit",
+    "test": "jest --detectOpenHandles --forceExit",
     "lint": "eslint src",
     "build": "tsc",
     "dev": "nodemon src/index.ts",
-    "start":"node dist/src/index.js"
+    "start": "node dist/src/index.js"
   },
   "keywords": [],
   "author": "",
