@@ -1,5 +1,5 @@
 import { EntityRepository } from "../interfaces/EntityRepository";
-import { ProductDocument } from "../models/Product";
+import { Document } from "mongoose";
 
 export class ProductService {
   constructor(private productRepository: EntityRepository) {}
@@ -14,12 +14,12 @@ export class ProductService {
     return product;
   }
 
-  async create(productData: Partial<ProductDocument>) {
+  async create(productData: Partial<Document>) {
     const product = await this.productRepository.create(productData);
     return product;
   }
 
-  async update(id: string, productData: Partial<ProductDocument>) {
+  async update(id: string, productData: Partial<Document>) {
     const product = await this.productRepository.update(id, productData);
     return product;
   }

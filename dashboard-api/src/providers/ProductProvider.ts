@@ -1,10 +1,8 @@
 import ProductController from "../controllers/ProductController";
-import {ProductService} from "../services/ProductService";
-import ProductRepository from "../repositories/ProductRepository";
-import Product from "../models/Product";
+import { ProductService } from "../services/ProductService";
+import MongoProductRepository from "../repositories/MongoProductRepository";
 
-const product = Product;
-const productRepository = new ProductRepository(product);
+const productRepository = new MongoProductRepository();
 const productService = new ProductService(productRepository);
 const productController = new ProductController(productService);
 
