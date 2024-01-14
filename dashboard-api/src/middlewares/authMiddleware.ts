@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import User from "../models/User";
+import { userModel } from "../repositories/MongoUserRepository";
 import jwt from "jsonwebtoken";
 
 export const authenticate = async (
@@ -30,7 +30,7 @@ export const authorize = async (
   res: Response,
   next: NextFunction
 ) => {
-  const user: any = await User.findById(req.body.ownerId);
+  const user: any = await userModel.findById(req.body.ownerId);
   if (user.profile !== "OWNER") {
     return res
       .status(403)

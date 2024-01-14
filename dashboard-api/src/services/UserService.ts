@@ -1,6 +1,5 @@
+import { Document } from "mongoose";
 import { IUserRepository } from "../interfaces/EntityRepository";
-import { UserDocument } from "../models/User";
-
 export class UserService {
   constructor(private userRepository: IUserRepository) {}
 
@@ -14,12 +13,12 @@ export class UserService {
     return user;
   }
 
-  async create(userData: Partial<UserDocument>) {
+  async create(userData: Partial<Document>) {
     const user = await this.userRepository.create(userData);
     return user;
   }
 
-  async update(id: string, userData: Partial<UserDocument>) {
+  async update(id: string, userData: Partial<Document>) {
     const user = await this.userRepository.update(id, userData);
     return user;
   }

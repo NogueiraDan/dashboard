@@ -32,7 +32,7 @@ export default class UserController {
         .send({ error: "Existem campos obrigatórios vazios!" });
     }
     const hashedPassword = bcrypt.hashSync(password, 8);
-    const userToSave = {
+    const userToSave: any = {
       name: name,
       email: email,
       password: hashedPassword,

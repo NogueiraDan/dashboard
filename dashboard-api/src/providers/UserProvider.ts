@@ -1,10 +1,9 @@
 import UserController from "../controllers/UserController";
 import { UserService } from "../services/UserService";
-import UserRepository from "../repositories/UserRepository";
-import User from "../models/User";
+import MongoUserRepository from "../repositories/MongoUserRepository";
 
-const user = User;
-const userRepository = new UserRepository(user);
+// Utilizando o Repository do MongoDB como a persistência atual
+const userRepository = new MongoUserRepository();
 const userService = new UserService(userRepository);
 const userController = new UserController(userService);
 
