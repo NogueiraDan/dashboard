@@ -1,7 +1,7 @@
 import CategoryController from "../controllers/CategoryController";
 import { CategoryService } from "../services/CategoryService";
 import CategoryRepository from "../repositories/CategoryRepository";
-import Category from "../models/Category";
+import Category from "../entities/Category";
 
 const category = Category;
 

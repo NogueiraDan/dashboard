@@ -1,5 +1,5 @@
 import mongoose, { Document, Schema } from "mongoose";
-import { Product } from "../models/Product";
+import { Product } from "../entities/Product";
 import { EntityRepository } from "../interfaces/EntityRepository";
 
 interface ProductMongoDocument extends Document, Product {}

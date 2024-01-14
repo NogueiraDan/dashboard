@@ -1,7 +1,7 @@
 import BrandController from "../controllers/BrandController";
 import { BrandService } from "../services/BrandService";
 import BrandRepository from "../repositories/BrandRepository";
-import Brand from "../models/Brand";
+import Brand from "../entities/Brand";
 
 const brand = Brand;
 const brandRepository = new BrandRepository(brand);

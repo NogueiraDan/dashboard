@@ -1,4 +1,4 @@
-import { BrandDocument } from "../models/Brand";
+import { BrandDocument } from "../entities/Brand";
 import { EntityRepository } from "../interfaces/EntityRepository";
 
 export class BrandService {

@@ -1,5 +1,5 @@
 import { Model } from "mongoose";
-import { BrandDocument } from "../models/Brand";
+import { BrandDocument } from "../entities/Brand";
 
 export default class BrandRepository {
   constructor(private brandModel: Model<BrandDocument>) {}

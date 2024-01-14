@@ -1,5 +1,5 @@
 import { Model } from "mongoose";
-import { CategoryDocument } from "../models/Category";
+import { CategoryDocument } from "../entities/Category";
 
 export default class CategoryRepository {
   constructor(private categoryModel: Model<CategoryDocument>) {}

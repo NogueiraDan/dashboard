@@ -1,4 +1,4 @@
-import { User } from "../models/User";
+import { User } from "../entities/User";
 import { IUserRepository } from "../interfaces/EntityRepository";
 import mongoose, { Document, Schema } from "mongoose";
 import jwt from "jsonwebtoken";

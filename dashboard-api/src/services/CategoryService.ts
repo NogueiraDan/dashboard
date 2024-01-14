@@ -1,4 +1,4 @@
-import { CategoryDocument } from "../models/Category";
+import { CategoryDocument } from "../entities/Category";
 import { EntityRepository } from "../interfaces/EntityRepository";
 
 export class CategoryService {
