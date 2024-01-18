@@ -1,11 +1,8 @@
 import CategoryController from "../controllers/CategoryController";
 import { CategoryService } from "../services/CategoryService";
-import CategoryRepository from "../repositories/CategoryRepository";
-import Category from "../entities/Category";
+import CategoryRepository from "../repositories/MongoCategoryRepository";
 
-const category = Category;
-
-const categoryRepository = new CategoryRepository(category);
+const categoryRepository = new CategoryRepository();
 const categoryService = new CategoryService(categoryRepository);
 const categoryController = new CategoryController(categoryService);
 

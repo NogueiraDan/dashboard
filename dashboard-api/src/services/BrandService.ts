@@ -1,4 +1,4 @@
-import { BrandDocument } from "../entities/Brand";
+import { Document } from "mongoose";
 import { EntityRepository } from "../interfaces/EntityRepository";
 
 export class BrandService {
@@ -14,12 +14,12 @@ export class BrandService {
     return user;
   }
 
-  async create(userData: Partial<BrandDocument>) {
+  async create(userData: Partial<Document>) {
     const user = await this.brandRepository.create(userData);
     return user;
   }
 
-  async update(id: string, userData: Partial<BrandDocument>) {
+  async update(id: string, userData: Partial<Document>) {
     const user = await this.brandRepository.update(id, userData);
     return user;
   }

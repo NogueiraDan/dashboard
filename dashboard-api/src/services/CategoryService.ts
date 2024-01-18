@@ -1,4 +1,4 @@
-import { CategoryDocument } from "../entities/Category";
+import { Document } from "mongoose";
 import { EntityRepository } from "../interfaces/EntityRepository";
 
 export class CategoryService {
@@ -14,12 +14,12 @@ export class CategoryService {
     return category;
   }
 
-  async create(categoryData: Partial<CategoryDocument>) {
+  async create(categoryData: Partial<Document>) {
     const category = await this.categoryRepository.create(categoryData);
     return category;
   }
 
-  async update(id: string, categoryData: Partial<CategoryDocument>) {
+  async update(id: string, categoryData: Partial<Document>) {
     const category = await this.categoryRepository.update(id, categoryData);
     return category;
   }

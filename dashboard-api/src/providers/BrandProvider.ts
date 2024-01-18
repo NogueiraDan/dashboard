@@ -1,10 +1,8 @@
 import BrandController from "../controllers/BrandController";
 import { BrandService } from "../services/BrandService";
-import BrandRepository from "../repositories/BrandRepository";
-import Brand from "../entities/Brand";
+import BrandRepository from "../repositories/MongoBrandRepository";
 
-const brand = Brand;
-const brandRepository = new BrandRepository(brand);
+const brandRepository = new BrandRepository();
 const brandService = new BrandService(brandRepository);
 const brandController = new BrandController(brandService);
 
