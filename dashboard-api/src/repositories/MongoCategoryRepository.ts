@@ -17,7 +17,7 @@ const CategorySchema = new Schema({
 export const categoryModel = mongoose.model<CategoryMongoDocument>(
   "Category",
   CategorySchema,
-  "categories"
+  "categories",
 );
 
 export default class MongoCategoryRepository implements EntityRepository {

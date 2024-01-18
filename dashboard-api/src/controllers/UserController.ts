@@ -52,7 +52,7 @@ export default class UserController {
     try {
       const userUptaded = await this.userService.update(
         req.params.id,
-        req.body
+        req.body,
       );
       res.status(200).json(userUptaded);
     } catch (error) {
@@ -77,7 +77,7 @@ export default class UserController {
     try {
       const userData = await this.userService.login(
         req.body.email,
-        req.body.password
+        req.body.password,
       );
       res.status(200).json({ auth: true, data: userData });
     } catch (error) {

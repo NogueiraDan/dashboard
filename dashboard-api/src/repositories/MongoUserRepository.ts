@@ -17,7 +17,7 @@ const UserMongoSchema = new Schema<UserMongoDocument>({
 export const userModel = mongoose.model<UserMongoDocument>(
   "User",
   UserMongoSchema,
-  "users"
+  "users",
 );
 
 export default class MongoUserRepository implements IUserRepository {

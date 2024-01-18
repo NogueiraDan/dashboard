@@ -48,7 +48,7 @@ export default class ProductController {
     try {
       const productUptaded = await this.productService.update(
         req.params.id,
-        req.body
+        req.body,
       );
       res.status(200).json(productUptaded);
     } catch (error) {

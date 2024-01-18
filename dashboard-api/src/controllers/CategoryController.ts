@@ -41,7 +41,7 @@ export default class CategoryController {
     try {
       const categoryUptaded = await this.categoryService.update(
         req.params.id,
-        req.body
+        req.body,
       );
       res.status(200).json(categoryUptaded);
     } catch (error) {

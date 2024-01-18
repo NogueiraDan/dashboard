@@ -36,7 +36,7 @@ const ProductMongoSchema = new Schema<ProductMongoDocument>({
 export const productModel = mongoose.model<ProductMongoDocument>(
   "Product",
   ProductMongoSchema,
-  "products"
+  "products",
 );
 
 export default class MongoProductRepository implements EntityRepository {

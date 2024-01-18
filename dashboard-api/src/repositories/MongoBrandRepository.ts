@@ -14,7 +14,7 @@ const BrandSchema = new Schema({
 const brandModel = mongoose.model<BrandMongoDocument>(
   "Brand",
   BrandSchema,
-  "brands"
+  "brands",
 );
 
 export default class MongoBrandRepository implements EntityRepository {

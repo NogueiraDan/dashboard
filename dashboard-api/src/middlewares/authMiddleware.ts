@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 export const authenticate = async (
   req: any,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   const token: any = req.headers["x-access-token"];
   const SECRET: any = process.env.JWT_SECRET;
@@ -28,7 +28,7 @@ export const authenticate = async (
 export const authorize = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   const user: any = await userModel.findById(req.body.ownerId);
   if (user.profile !== "OWNER") {

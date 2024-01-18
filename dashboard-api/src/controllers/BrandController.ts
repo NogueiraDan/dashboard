@@ -42,7 +42,7 @@ export default class BrandController {
     try {
       const brandUptaded = await this.brandService.update(
         req.params.id,
-        req.body
+        req.body,
       );
       res.status(200).json(brandUptaded);
     } catch (error) {
