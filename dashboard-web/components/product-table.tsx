@@ -7,7 +7,6 @@ import { MoreVertical } from "lucide-react";
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -22,27 +21,8 @@ import { Input } from "./ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import AlertRemove from "./alert-remove";
 import AlertEdit from "./alert-edit";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuPortal,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { Button } from "./ui/button";
+import FilterModal from "./filter-modal";
 
 interface Product {
   brand: string;
@@ -89,10 +69,6 @@ export default function ProductsList({ products, isOwner }: Props) {
     return;
   }
 
-  function handleSelect(event: any) {
-    console.log(event);
-  }
-
   return (
     <>
       <div className="flex justify-between items-center mb-4">
@@ -101,32 +77,9 @@ export default function ProductsList({ products, isOwner }: Props) {
           className="w-[50%] placeholder:opacity-75"
           onChange={(event) => console.log(event.target.value)}
         />
+
         <div className="flex gap-1 w-[10%]">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline">Abrir filtros</Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-56 px-5">
-              <DropdownMenuGroup>
-                <Accordion type="single" collapsible className="w-full">
-                  <AccordionItem value="item-1">
-                    <AccordionTrigger>Categoria</AccordionTrigger>
-                    <AccordionContent>
-                      <div className="focus:bg-accent flex items-center gap-2 cursor-pointer ">
-                        <Checkbox id="suplemento" value="suplemento" />
-                        <label
-                          htmlFor="suplemento"
-                          className="text-sm font-medium "
-                        >
-                          Suplemento
-                        </label>
-                      </div>
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion>
-              </DropdownMenuGroup>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <FilterModal />
         </div>
       </div>
       <ScrollArea className="h-72 w-full rounded-md border">
