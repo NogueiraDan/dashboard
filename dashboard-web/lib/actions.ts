@@ -142,6 +142,25 @@ export async function login(formData: any) {
   redirect("/dashboard");
 }
 
+export async function updateUser(formData: any, id: any){
+  const body = formData;
+   const token = cookies().get("USER_AUTH_TOKEN_SECRET");
+   const headers = {
+     "x-access-token": token?.value,
+   };
+   try {
+     await axios.patch(`${BASE_URL}/users/${id}`, body, {headers});
+     const json = {
+       message: "Success",
+     };
+     return json;
+   } catch (error) {
+    console.log(error);
+    throw new Error("Failed to update the user.");
+   }
+  
+}
+
 export async function logout() {
   cookies().delete("USER_AUTH_TOKEN_SECRET");
   cookies().delete("USER_INFO");
@@ -165,7 +184,7 @@ export async function checkAuth() {
 }
 
 export async function isOwner() {
-  const user: any = cookies().get("USER_INFO");
+  const user: any = cookies().get("USER_INFO") || "";
   const userJSON = JSON.parse(user?.value);
   if (userJSON.profile === "OWNER") return true;
   else false;

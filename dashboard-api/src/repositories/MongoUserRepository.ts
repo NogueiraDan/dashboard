@@ -61,6 +61,7 @@ export default class MongoUserRepository implements IUserRepository {
       expiresIn: 86400,
     });
     const userData = {
+      id: user._id,
       name: user.name,
       email: user.email,
       profile: user.profile,

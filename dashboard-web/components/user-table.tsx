@@ -39,15 +39,18 @@ export default function UsersTable({ isOwner }: Props) {
   const [search, setSearch] = useState("");
   const fields = [
     {
-      name: "Nome",
+      label: "Nome",
+      name: "name",
       type: "text",
     },
     {
-      name: "Email",
+      label: "Email",
+      name: "email",
       type: "email",
     },
     {
-      name: "Telefone",
+      label: "Telefone",
+      name: "phone",
       type: "text",
     },
   ];
@@ -73,6 +76,10 @@ export default function UsersTable({ isOwner }: Props) {
       users.filter((user: any) => user.name.toLowerCase().includes(search))
     );
     console.log("Usuários filtrados", filteredUsers);
+  }
+
+  function handleEdit(data: any) {
+    console.log(data);
   }
 
   async function handleRemove(id: string) {
@@ -143,7 +150,12 @@ export default function UsersTable({ isOwner }: Props) {
                           </PopoverTrigger>
                           <PopoverContent className="w-100">
                             <div className="flex flex-col gap-2 outline-none">
-                              <AlertEdit fields={fields} select={select} />
+                              <AlertEdit
+                                fields={fields}
+                                select={select}
+                                // onSubmit={handleEdit}
+                                id={user._id}
+                              />
                               <AlertRemove
                                 onRemove={handleRemove}
                                 id={user._id}
@@ -174,7 +186,11 @@ export default function UsersTable({ isOwner }: Props) {
                           </PopoverTrigger>
                           <PopoverContent className="w-100">
                             <div className="flex flex-col gap-2 outline-none">
-                              <AlertEdit fields={fields} select={select} />
+                              <AlertEdit
+                                fields={fields}
+                                select={select}
+                                id={user._id}
+                              />
                               <AlertRemove
                                 onRemove={handleRemove}
                                 id={user._id}

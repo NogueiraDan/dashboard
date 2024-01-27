@@ -1,3 +1,4 @@
+import React from "react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -9,17 +10,11 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { Pencil } from "lucide-react";
+import { getUserInfo, updateUser } from "@/lib/actions";
 
 interface Field {
   name: string | any;
@@ -33,9 +28,38 @@ interface SelectOption {
 interface Props {
   fields: Field[];
   select?: SelectOption[];
+  onSubmit?: (data: any) => any;
+  id: any;
 }
 
-export default function AlertEdit({ fields, select }: Props) {
+export default function AlertEdit({ fields, select, id }: Props) {
+  const [formData, setFormData] = React.useState({});
+  const [profile, setProfile] = React.useState("");
+
+  function handleInputChange(fieldname: any, value: any) {
+    setFormData((prevData) => ({
+      ...prevData,
+      [fieldname]: value,
+    }));
+  }
+
+  function handleSelectChange(value: any) {
+    console.log(value);
+    setProfile(value);
+  }
+
+  async function handleSubmit() {
+    const userData = await getUserInfo();
+    const user = { ...formData, profile: profile, ownerId: userData.id };
+    console.log(user);
+    const response = await updateUser(user, id);
+    if (response) {
+      console.log(response);
+      alert("Usuário alterado com sucesso!");
+      location.reload();
+    }
+  }
+
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
@@ -61,37 +85,44 @@ export default function AlertEdit({ fields, select }: Props) {
           <div className="grid w-full items-center gap-4">
             {fields.map((field) => (
               <>
-                <div className="flex flex-col space-y-1.5">
-                  <Label>{field.name}</Label>
-                  <Input type={field.type} />
+                <div className="flex flex-col space-y-1.5" key={field.name}>
+                  <Label>{field.label}</Label>
+                  <Input
+                    type={field.type}
+                    onChange={(event) =>
+                      handleInputChange(field.name, event.target.value)
+                    }
+                  />
                 </div>
               </>
             ))}
             {select && (
-              <div className="flex flex-col space-y-1.5">
+              <div className="flex flex-col space-y-1.5 gap-2">
                 <Label htmlFor="profile">Perfil</Label>
-                <Select>
-                  <SelectTrigger id="profile">
-                    <SelectValue placeholder="Selecione" />
-                  </SelectTrigger>
-                  <SelectContent position="popper">
-                    {select.map((select) => (
-                      <SelectItem key={select.value} value={select.value}>
-                        {select.value}
-                      </SelectItem>
+                <div className="flex">
+                  <select
+                    onChange={(event) => handleSelectChange(event.target.value)}
+                  >
+                    {select.map((option) => (
+                      <option key={option.value}>{option.value}</option>
                     ))}
-                  </SelectContent>
-                </Select>
+                  </select>
+                </div>
               </div>
             )}
           </div>
         </form>
         <AlertDialogFooter>
-          <AlertDialogCancel className="bg-[#ff0000] text-white font-medium hover:bg-[#ff4444] hover:text-white">
+          <AlertDialogCancel
+            className="bg-[#ff0000] text-white font-medium hover:bg-[#ff4444] hover:text-white"
+            onClick={() => {
+              setFormData([{}]);
+            }}
+          >
             Cancelar
           </AlertDialogCancel>
           <AlertDialogAction
-            onClick={() => alert("Editou")}
+            onClick={handleSubmit}
             className="bg-[#0055ff] hover:bg-[#2970ff]"
           >
             Atualizar
