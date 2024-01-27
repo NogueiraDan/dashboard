@@ -21,8 +21,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "./ui/textarea";
-import { createProduct, getCategories } from "@/lib/actions";
-import { useEffect } from "react";
+import { createProduct } from "@/lib/actions";
 
 const productSchema = z.object({
   name: z

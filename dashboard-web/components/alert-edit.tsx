@@ -14,7 +14,7 @@ import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { Pencil } from "lucide-react";
-import { getUserInfo} from "@/lib/actions";
+import { getUserInfo } from "@/lib/actions";
 
 interface Field {
   label: string;
@@ -57,7 +57,6 @@ export default function AlertEdit({ fields, select, id, onSubmit }: Props) {
     } else {
       console.error("onSubmit não está definido");
     }
-    
   }
 
   return (
