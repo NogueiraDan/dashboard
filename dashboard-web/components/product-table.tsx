@@ -18,10 +18,8 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Input } from "./ui/input";
-import { Checkbox } from "@/components/ui/checkbox";
 import AlertRemove from "./alert-remove";
 import AlertEdit from "./alert-edit";
-import { Button } from "./ui/button";
 import FilterModal from "./filter-modal";
 
 interface Product {
@@ -43,19 +41,23 @@ interface Props {
 export default function ProductsList({ products, isOwner }: Props) {
   const fields = [
     {
-      name: "Nome",
+      label: "Nome",
+      name:"name",
       type: "text",
     },
     {
-      name: "Preço",
+      label: "Preço",
+      name: "price",
       type: "text",
     },
     {
-      name: "Estoque",
+      label: "Estoque",
+      name: "stock",
       type: "text",
     },
     {
-      name: "Descrição",
+      label: "Descrição",
+      name:"description",
       type: "text",
     },
   ];
@@ -68,6 +70,12 @@ export default function ProductsList({ products, isOwner }: Props) {
     }
     return;
   }
+
+  async function handleUpdate(user: any, id: string) {
+    console.log("User", user);
+    console.log("ID", id);
+  }
+
 
   return (
     <>
@@ -110,7 +118,11 @@ export default function ProductsList({ products, isOwner }: Props) {
                       </PopoverTrigger>
                       <PopoverContent className="w-100">
                         <div className="flex flex-col gap-2 outline-none">
-                          <AlertEdit fields={fields} />
+                          <AlertEdit
+                            fields={fields}
+                            id={product._id}
+                            onSubmit={handleUpdate}
+                          />
                           <AlertRemove
                             onRemove={handleRemove}
                             id={product._id}

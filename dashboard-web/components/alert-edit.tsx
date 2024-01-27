@@ -51,12 +51,12 @@ export default function AlertEdit({ fields, select, id, onSubmit }: Props) {
 
   async function handleSubmit() {
     const userData = await getUserInfo();
-    const user = { ...formData, profile: profile, ownerId: userData.id };
-    if (onSubmit) {
-      onSubmit(user, id);
-    } else {
-      console.error("onSubmit não está definido");
-    }
+    const data = {
+      ...formData,
+      ...(select ? { profile: profile } : null),
+      ownerId: userData.id,
+    };
+    onSubmit ? onSubmit(data, id) : console.error("onSubmit não está definido");
   }
 
   return (

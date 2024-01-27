@@ -31,7 +31,7 @@ export const authorize = async (
   next: NextFunction,
 ) => {
   const user: any = await userModel.findById(req.body.ownerId);
-  if (user.profile !== "OWNER") {
+  if (user === null || user.profile !== "OWNER") {
     return res
       .status(403)
       .json({ message: "Acesso negado! Seu perfil não tem autorização" });

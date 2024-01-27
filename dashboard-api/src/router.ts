@@ -31,14 +31,14 @@ router.get("/products/:id", productController.findOne);
 
 // Rotas protegidas pelos Middlewares
 router.post("/products", authenticate, productController.create);
-router.patch("/users/:id", authenticate, userController.update);
+router.patch("/users/:id", authenticate, authorize, userController.update);
 router.delete("/users/:id", authenticate, userController.delete);
-router.patch("/products/:id", productController.update);
-router.delete("/products/:id", productController.delete);
-router.post("/brands", brandController.create);
-router.patch("/brands/:id", brandController.update);
-router.delete("/brands/:id", brandController.delete);
-router.post("/categories", categoryController.create);
-router.patch("/categories/:id", categoryController.update);
-router.delete("/categories/:id", categoryController.delete);
+router.patch("/products/:id", authenticate, authorize, productController.update);
+router.delete("/products/:id", authenticate, productController.delete);
+router.post("/brands", authenticate, brandController.create);
+router.patch("/brands/:id", authenticate, brandController.update);
+router.delete("/brands/:id", authenticate, brandController.delete);
+router.post("/categories", authenticate, categoryController.create);
+router.patch("/categories/:id", authenticate, categoryController.update);
+router.delete("/categories/:id", authenticate, categoryController.delete);
 

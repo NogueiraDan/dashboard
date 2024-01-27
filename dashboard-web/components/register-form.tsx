@@ -1,6 +1,5 @@
 "use client";
 import * as React from "react";
-import { redirect } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Icons } from "@/components/icons";
 import { Button } from "@/components/ui/button";
@@ -18,8 +17,6 @@ export function RegisterForm({ className, ...props }: AuthFormProps) {
 
     setTimeout(() => {
       setIsLoading(false);
-      //   redirect("/dashboard");
-      // window.location.replace("/dashboard");
     }, 3000);
   }
 
