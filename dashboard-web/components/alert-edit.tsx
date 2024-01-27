@@ -14,9 +14,10 @@ import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { Pencil } from "lucide-react";
-import { getUserInfo, updateUser } from "@/lib/actions";
+import { getUserInfo} from "@/lib/actions";
 
 interface Field {
+  label: string;
   name: string | any;
   type: string;
 }
@@ -28,11 +29,11 @@ interface SelectOption {
 interface Props {
   fields: Field[];
   select?: SelectOption[];
-  onSubmit?: (data: any) => any;
+  onSubmit?: (user: any, id: any) => Promise<any>;
   id: any;
 }
 
-export default function AlertEdit({ fields, select, id }: Props) {
+export default function AlertEdit({ fields, select, id, onSubmit }: Props) {
   const [formData, setFormData] = React.useState({});
   const [profile, setProfile] = React.useState("");
 
@@ -51,13 +52,12 @@ export default function AlertEdit({ fields, select, id }: Props) {
   async function handleSubmit() {
     const userData = await getUserInfo();
     const user = { ...formData, profile: profile, ownerId: userData.id };
-    console.log(user);
-    const response = await updateUser(user, id);
-    if (response) {
-      console.log(response);
-      alert("Usuário alterado com sucesso!");
-      location.reload();
+    if (onSubmit) {
+      onSubmit(user, id);
+    } else {
+      console.error("onSubmit não está definido");
     }
+    
   }
 
   return (

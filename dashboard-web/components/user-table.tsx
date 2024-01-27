@@ -25,7 +25,12 @@ import {
 import React, { useEffect, useState } from "react";
 import { Input } from "./ui/input";
 import { MoreVertical } from "lucide-react";
-import { deleteUser, getUsers, getUsersByProfile } from "@/lib/actions";
+import {
+  deleteUser,
+  getUsers,
+  getUsersByProfile,
+  updateUser,
+} from "@/lib/actions";
 import AlertRemove from "./alert-remove";
 import AlertEdit from "./alert-edit";
 
@@ -78,10 +83,6 @@ export default function UsersTable({ isOwner }: Props) {
     console.log("Usuários filtrados", filteredUsers);
   }
 
-  function handleEdit(data: any) {
-    console.log(data);
-  }
-
   async function handleRemove(id: string) {
     const response = await deleteUser(id);
     if (response) {
@@ -89,6 +90,12 @@ export default function UsersTable({ isOwner }: Props) {
       location.reload();
     }
     return;
+  }
+
+  async function handleUpdate(user: any, id: string) {
+    await updateUser(user, id);
+    alert("Usuário alterado com sucesso!");
+    location.reload();
   }
 
   useEffect(() => {
@@ -153,8 +160,8 @@ export default function UsersTable({ isOwner }: Props) {
                               <AlertEdit
                                 fields={fields}
                                 select={select}
-                                // onSubmit={handleEdit}
                                 id={user._id}
+                                onSubmit={handleUpdate}
                               />
                               <AlertRemove
                                 onRemove={handleRemove}

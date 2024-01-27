@@ -109,15 +109,19 @@ export async function deleteProduct(id: string) {
 }
 
 export async function deleteUser(id: string) {
+   const token = cookies().get("USER_AUTH_TOKEN_SECRET");
+   const headers = {
+     "x-access-token": token?.value,
+   };
   try {
-    await axios.delete(`${BASE_URL}/users/${id}`);
+    await axios.delete(`${BASE_URL}/users/${id}`, {headers});
     const json = {
       message: "Produto deletado com sucesso!",
     };
     return json;
   } catch (error) {
     console.log(error);
-    throw new Error("Failed to deleta a user.");
+    throw new Error("Failed to delete the user.");
   }
 }
 
