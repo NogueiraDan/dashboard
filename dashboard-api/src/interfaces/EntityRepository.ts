@@ -1,14 +1,14 @@
 import { Document } from "mongoose";
 
-export interface EntityRepository {
-  findAll(query?: string): Promise<Document[]>;
-  findById(id: string): Promise<Document | null>;
-  create(data: Partial<Document>): Promise<Document>;
-  update(id: string, data: Partial<Document>): Promise<Document | null>;
+interface EntityRepository {
+  findAll(query?: string): Promise<T[]>;
+  findById(id: string): Promise<T | null>;
+  create(data: T): Promise<T>;
+  update(id: string, data: Partial<T>): Promise<T | null>;
   delete(id: string): Promise<void | null>;
-  // eslint-disable-next-line semi
 }
 
-export interface IUserRepository extends EntityRepository {
+// Caso uma Entidade User precisasse de um metodo de login
+interface IUserRepository extends EntityRepository {
   login(email: string, password: string): Promise<any>;
 }
