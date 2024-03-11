@@ -3,7 +3,7 @@ import { Button } from "./ui/button";
 
 export default function FilterModal() {
   const [open, setOpen] = React.useState(false);
-  const [selectedCheckboxes, setSelectedCheckboxes] = React.useState([]);
+  const [selectedCheckboxes, setSelectedCheckboxes] = React.useState<any>([]);
   const filtersData = [
     { id: "suplemento", value: "suplemento", label: "Suplemento" },
     { id: "remedio", value: "remedio", label: "Remedio" },
@@ -23,14 +23,14 @@ export default function FilterModal() {
     const { id, checked } = event.target;
     const updatedCheckboxes = checked
       ? [...selectedCheckboxes, { id, value: id }]
-      : selectedCheckboxes.filter((checkbox) => checkbox.id !== id);
+      : selectedCheckboxes.filter((checkbox:any) => checkbox.id !== id);
 
     setSelectedCheckboxes(updatedCheckboxes);
   }
 
   React.useEffect(() => {
     const savedCheckboxes =
-      JSON.parse(localStorage.getItem("selectedCheckboxes")) || [];
+      JSON.parse(localStorage.getItem("selectedCheckboxes") || "[]");
     setSelectedCheckboxes(savedCheckboxes);
   }, []);
 
@@ -67,7 +67,7 @@ export default function FilterModal() {
                     value={filter.value}
                     onChange={handleSelect}
                     checked={selectedCheckboxes.some(
-                      (checkbox) => checkbox.id === filter.id
+                      (checkbox:any) => checkbox.id === filter.id
                     )}
                   />
                   <label htmlFor={filter.id} className="text-sm font-medium">
@@ -89,7 +89,7 @@ export default function FilterModal() {
                     value={filter.value}
                     onChange={handleSelect}
                     checked={selectedCheckboxes.some(
-                      (checkbox) => checkbox.id === filter.id
+                      (checkbox:any) => checkbox.id === filter.id
                     )}
                   />
                   <label htmlFor={filter.id} className="text-sm font-medium">
