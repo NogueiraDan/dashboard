@@ -1,6 +1,6 @@
 import { Document } from "mongoose";
 
-interface EntityRepository {
+export interface EntityRepository {
   findAll(query?: string): Promise<T[]>;
   findById(id: string): Promise<T | null>;
   create(data: T): Promise<T>;
@@ -9,6 +9,6 @@ interface EntityRepository {
 }
 
 // Caso uma Entidade User precisasse de um metodo de login
-interface IUserRepository extends EntityRepository {
+export interface IUserRepository extends EntityRepository {
   login(email: string, password: string): Promise<any>;
 }
